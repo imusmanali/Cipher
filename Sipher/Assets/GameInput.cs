@@ -23,7 +23,8 @@ public class GameInput : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Poligon")
                 {
-                    hit.transform.gameObject.GetComponent<Poligon>().Rotate();
+                    // hit.transform.gameObject.GetComponent<Poligon>().Rotate();
+                    hit.transform.gameObject.GetComponent<Poligon>().SmoothRotate();
                 }
             }
         }

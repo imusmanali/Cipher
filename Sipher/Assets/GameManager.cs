@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,16 @@ public class GameManager : MonoBehaviour
     public GameObject[] connectors;
     public bool condition = false;
 
+
+
+    //time
+    private float leveltime;
+    public Text timerText;
+    public bool isCountDown;
+
+
+    //
+    public GameInput myInput;
 
     //singleton
     private static GameManager instance = null;
@@ -47,8 +58,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         connectors = GameObject.FindGameObjectsWithTag("Connecter");
+        leveltime = mainLevel.GetComponent<level>().leveTime;
 
-       
+        isCountDown = true;
     }
 
     // Update is called once per frame
@@ -60,6 +72,13 @@ public class GameManager : MonoBehaviour
         //{
         //    check();
         //}
+        if (isCountDown == true)
+        {
+            CountDown();
+        }
+       
+
+
     }
 
 
@@ -84,6 +103,7 @@ public class GameManager : MonoBehaviour
         }
 
         condition = true;
+        LevelCompleted();
     }
 
     void InitialConditions()
@@ -104,4 +124,36 @@ public class GameManager : MonoBehaviour
            poligon.transform.Rotate(new Vector3(0, 0, 1), rotatonAngles[k]);
         }
     }
+
+
+    void CountDown()
+    {
+        if (leveltime <= 0)
+        {
+            leveltime = 0;
+            
+            LevelFailed();
+        }
+        else
+        {
+            leveltime -= Time.deltaTime;
+        }
+
+        timerText.text = "[ " + (int)leveltime + " ]";
+    }
+
+    void LevelFailed()
+    {
+        isCountDown = false;
+        myInput.enabled = false;
+        Debug.Log("LevelFailed");
+        //todo;
+    }
+    void LevelCompleted()
+    {
+        isCountDown = false;
+        myInput.enabled = false;
+        Debug.Log("LevelCompleted");
+    }
+
 }

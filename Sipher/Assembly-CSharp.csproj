@@ -54,6 +54,8 @@
      <Compile Include="Assets\CONNECTER.cs" />
      <Compile Include="Assets\GameInput.cs" />
      <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\LerpingCub.cs" />
+     <Compile Include="Assets\level.cs" />
      <Compile Include="Assets\Poligon.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity2017/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
